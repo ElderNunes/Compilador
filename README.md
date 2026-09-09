@@ -3,7 +3,7 @@
 Disciplina: **Compiladores** (CPCO6A EC-AP — UTFPR-AP)
 Entrega parcial 1 (AP1): Analisador Léxico
 
-**Dupla:** Nunes & Gabriel Jesus
+**Dupla:** Elder Nunes & Gabriel Jesus
 
 ---
 
