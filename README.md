@@ -40,7 +40,7 @@ que dá `Erro Léxico na linha 8: Desconhecido "Parametro"`).
 
 | Parte | O que envolve | Sugestão |
 |---|---|---|
-| **1. Infraestrutura** | Ler o arquivo caractere a caractere, controlar número da linha, pular espaço/tab/quebra de linha, pular comentário `#` | quem quiser começar primeiro |
+| **1. Infraestrutura** | Ler o arquivo caractere a caractere, controlar número da linha, pular espaço/tab/quebra de linha, pular comentário `#` | Nunes|
 | **2. Palavras-chave e símbolos simples** | Reconhecer as 12 palavras-chave, o delimitador `:`, a atribuição `:=`, os parênteses | Nunes |
 | **3. Operadores** | Aritméticos, relacionais (atenção pros de 2 caracteres: `<=`, `>=`, `==`, `!=`), booleanos `E`/`OU` | Gabriel |
 | **4. Números, variáveis e cadeias** | `Var` (minúscula), `NumInt`/`NumReal`, `Cadeia` entre aspas | Gabriel |
