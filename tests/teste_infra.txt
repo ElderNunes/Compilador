@@ -1,0 +1,5 @@
+abc   def
+# isso e um comentario, deve sumir inteiro
+ghi
+   # outro comentario logo depois de espacos
+jkl
