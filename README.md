@@ -40,12 +40,12 @@ que dá `Erro Léxico na linha 8: Desconhecido "Parametro"`).
 
 | Parte | O que envolve | Sugestão |
 |---|---|---|
-| **1. Infraestrutura** | Ler o arquivo caractere a caractere, controlar número da linha, pular espaço/tab/quebra de linha, pular comentário `#` | Nunes|
-| **2. Palavras-chave e símbolos simples** | Reconhecer as 12 palavras-chave, o delimitador `:`, a atribuição `:=`, os parênteses | Nunes |
-| **3. Operadores** | Aritméticos, relacionais (atenção pros de 2 caracteres: `<=`, `>=`, `==`, `!=`), booleanos `E`/`OU` | Gabriel |
-| **4. Números, variáveis e cadeias** | `Var` (minúscula), `NumInt`/`NumReal`, `Cadeia` entre aspas | Gabriel |
-| **5. Erro léxico** | Detectar caractere/lexema inválido e emitir a mensagem no formato exato do enunciado | os dois juntos |
-| **6. Testes e integração** | Juntar tudo num programa único, testar com o exemplo do fatorial (válido e com erro), revisar cabeçalho | os dois juntos |
+| **1. Infraestrutura do lexer** | Abrir arquivo, controlar posição atual, implementar `peek()`, `advance()` e `match()`, controlar número da linha, ignorar espaços, tabs, quebras de linha e comentários `#`, além de reconhecer EOF | Nunes |
+| **2. Palavras e classificação textual** | Reconhecer `DEC`, `PROG`, `INT`, `REAL`, `LER`, `IMPRIMIR`, `SE`, `SENAO`, `ENTAO`, `ENQTO`, `INI`, `FIM`, operadores booleanos `E`/`OU` e variáveis `Var` | Nunes |
+| **3. Operadores e símbolos** | Reconhecer operadores aritméticos `+`, `-`, `*`, `/`, relacionais `<`, `<=`, `>`, `>=`, `==`, `!=`, delimitador `:`, atribuição `:=` e parênteses `(`, `)` | Gabriel |
+| **4. Números e cadeias** | Reconhecer `NumInt`, `NumReal` e `Cadeia` entre aspas | Gabriel |
+| **5. Erro léxico** | Detectar caractere ou lexema inválido, identificar a linha do erro e emitir a mensagem no formato exigido pelo enunciado | os dois juntos |
+| **6. Testes e integração** | Juntar todos os módulos em um único programa, testar com o exemplo do fatorial válido e com erros léxicos, comparar a saída com a especificação e revisar o cabeçalho do código | os dois juntos |
 
 Ajustem entre vocês quem pega o quê — o importante é que cada parte vire uma branch e um PR
 separado, pra dar pra revisar o código um do outro antes de juntar.
