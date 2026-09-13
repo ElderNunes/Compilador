@@ -11,9 +11,9 @@ Entrega parcial 1 (AP1): Analisador Léxico
 
 - Ler um arquivo-fonte na linguagem GYH e devolver a sequência de tokens no formato `<Tipo, "lexema">`.
 - Quando encontrar algo inválido, parar e imprimir `Erro Léxico na linha N: Desconhecido "X"`.
-- Desenvolver em C.
+- Desenvolver em C++.
 - No arquivo onde estiver a `main`, colocar nome completo + RA dos dois integrantes.
-- Entregar todos os `.c`/`.h` do analisador.
+- Entregar todos os `.cpp`/`.h` do analisador.
 
 ### Categorias de token que o analisador precisa reconhecer
 
@@ -91,7 +91,7 @@ Antes da entrega: PR `develop -> main`.
 
 ## 5. Checklist antes de entregar
 
-- [ ] Todos os `.c`/`.h` estão no repositório
+- [ ] Todos os `.cpp`/`.h` estão no repositório
 - [ ] Cabeçalho da `main` com nome completo e RA dos dois
 - [ ] Compila sem warnings
 - [ ] Testado com entrada válida e com entrada de erro
