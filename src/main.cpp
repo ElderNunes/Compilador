@@ -1,7 +1,10 @@
 #include <cstdio>
 #include "lexer.h"
+#include "token.h"
 
-// Main teste
+static void imprimirToken(const Token *t) {
+    printf("<%s, \"%s\">\n", nomeTipoToken(t->tipo), t->lexema);
+}
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -17,7 +20,16 @@ int main(int argc, char *argv[]) {
 
     Lexer lex;
     lexerInicializar(&lex, fonte);
-    lexerDebugImprimirTudo(&lex);
+
+    Token t;
+    do {
+        t = lexerTesteParte2(&lex);
+        imprimirToken(&t);
+        if (t.tipo == TOKEN_ERRO) {
+            fclose(fonte);
+            return 1;
+        }
+    } while (t.tipo != TOKEN_EOF);
 
     fclose(fonte);
     return 0;
