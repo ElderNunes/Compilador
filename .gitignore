@@ -1,0 +1,8 @@
+# Artefatos de compilacao
+/lexer
+/build/
+*.o
+*.d
+
+# Configuracoes locais do editor
+/.vscode/

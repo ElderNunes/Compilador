@@ -1,5 +1,6 @@
 #include "token.h"
 
+// Converte o tipo interno para o nome exigido na saída do analisador.
 const char *nomeTipoToken(TipoToken tipo) {
     switch (tipo) {
         case PC_DEC:              return "PCDec";
