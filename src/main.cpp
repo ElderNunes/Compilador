@@ -1,10 +1,23 @@
+/*
+ * Integrante 1: Gabriel Oliveira de Jesus
+ * RA: 2614090
+ *
+ * Integrante 2: Elder Nunes Gonçalves
+ * RA: 2625288
+ */
+
 #include <cstdio>
 #include "lexer.h"
 #include "token.h"
 
 // Exibe o token no formato pedido pelo trabalho.
 static void imprimirToken(const Token *t) {
-    printf("<%s, \"%s\">\n", nomeTipoToken(t->tipo), t->lexema);
+    if (t->tipo == TOKEN_EOF) {
+        printf("<EOF>\n");
+        return;
+    }
+
+    printf("<%s,\"%s\">\n", nomeTipoToken(t->tipo), t->lexema);
 }
 
 int main(int argc, char *argv[]) {

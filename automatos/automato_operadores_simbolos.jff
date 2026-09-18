@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Autômato finito determinístico para operadores e símbolos da linguagem GYH. -->
+<structure>
+    <type>fa</type>
+    <automaton>
+        <state id="0" name="q0">
+            <x>80.0</x>
+            <y>380.0</y>
+            <initial/>
+        </state>
+        <state id="1" name="OpAritMult">
+            <x>300.0</x>
+            <y>40.0</y>
+            <final/>
+        </state>
+        <state id="2" name="OpAritDiv">
+            <x>300.0</x>
+            <y>100.0</y>
+            <final/>
+        </state>
+        <state id="3" name="OpAritSoma">
+            <x>300.0</x>
+            <y>160.0</y>
+            <final/>
+        </state>
+        <state id="4" name="OpAritSub">
+            <x>300.0</x>
+            <y>220.0</y>
+            <final/>
+        </state>
+        <state id="5" name="OpRelMenor">
+            <x>300.0</x>
+            <y>280.0</y>
+            <final/>
+        </state>
+        <state id="6" name="OpRelMenorIgual">
+            <x>540.0</x>
+            <y>280.0</y>
+            <final/>
+        </state>
+        <state id="7" name="OpRelMaior">
+            <x>300.0</x>
+            <y>340.0</y>
+            <final/>
+        </state>
+        <state id="8" name="OpRelMaiorIgual">
+            <x>540.0</x>
+            <y>340.0</y>
+            <final/>
+        </state>
+        <state id="9" name="qIgual">
+            <x>300.0</x>
+            <y>400.0</y>
+        </state>
+        <state id="10" name="OpRelIgual">
+            <x>540.0</x>
+            <y>400.0</y>
+            <final/>
+        </state>
+        <state id="11" name="qDiferente">
+            <x>300.0</x>
+            <y>460.0</y>
+        </state>
+        <state id="12" name="OpRelDif">
+            <x>540.0</x>
+            <y>460.0</y>
+            <final/>
+        </state>
+        <state id="13" name="Delim">
+            <x>300.0</x>
+            <y>520.0</y>
+            <final/>
+        </state>
+        <state id="14" name="Atrib">
+            <x>540.0</x>
+            <y>520.0</y>
+            <final/>
+        </state>
+        <state id="15" name="AbrePar">
+            <x>300.0</x>
+            <y>580.0</y>
+            <final/>
+        </state>
+        <state id="16" name="FechaPar">
+            <x>300.0</x>
+            <y>640.0</y>
+            <final/>
+        </state>
+
+        <transition><from>0</from><to>1</to><read>*</read></transition>
+        <transition><from>0</from><to>2</to><read>/</read></transition>
+        <transition><from>0</from><to>3</to><read>+</read></transition>
+        <transition><from>0</from><to>4</to><read>-</read></transition>
+        <transition><from>0</from><to>5</to><read>&lt;</read></transition>
+        <transition><from>5</from><to>6</to><read>=</read></transition>
+        <transition><from>0</from><to>7</to><read>&gt;</read></transition>
+        <transition><from>7</from><to>8</to><read>=</read></transition>
+        <transition><from>0</from><to>9</to><read>=</read></transition>
+        <transition><from>9</from><to>10</to><read>=</read></transition>
+        <transition><from>0</from><to>11</to><read>!</read></transition>
+        <transition><from>11</from><to>12</to><read>=</read></transition>
+        <transition><from>0</from><to>13</to><read>:</read></transition>
+        <transition><from>13</from><to>14</to><read>=</read></transition>
+        <transition><from>0</from><to>15</to><read>(</read></transition>
+        <transition><from>0</from><to>16</to><read>)</read></transition>
+    </automaton>
+</structure>
+
