@@ -3,7 +3,6 @@
 Disciplina: **Compiladores — UTFPR Apucarana**
 Dupla: **Elder Nunes Gonçalves e Gabriel Oliveira de Jesus**
 Etapa atual: **planejamento da 2ª avaliação — analisador sintático**
-Entrega indicada no enunciado: **13/11/2026**.
 
 ## Estado real do projeto
 
