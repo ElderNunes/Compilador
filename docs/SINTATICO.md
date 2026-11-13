@@ -122,4 +122,3 @@ A rotina atual de leitura incrementa a linha ao carregar a quebra de linha; revi
 - [ ] Makefile compila módulos novos e executa testes sem mascarar falhas.
 - [ ] Primeira linha da main contém nomes da dupla; conferir RAs existentes.
 - [ ] README reflete os comandos realmente disponíveis após integração.
-- [ ] Entrega revisada pelos dois até 13/11/2026.
