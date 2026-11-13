@@ -1,98 +1,78 @@
-# Analisador Léxico — Linguagem GYH
+# Compilador GYH — Análise léxica e sintática
 
-Disciplina: **Compiladores** (CPCO6A EC-AP — UTFPR-AP)
-Entrega parcial 1 (AP1): Analisador Léxico
+Disciplina: **Compiladores — UTFPR Apucarana**
+Dupla: **Elder Nunes Gonçalves e Gabriel Oliveira de Jesus**
+Etapa atual: **planejamento da 2ª avaliação — analisador sintático**
+Entrega indicada no enunciado: **13/11/2026**.
 
-**Dupla:** Elder Nunes & Gabriel Jesus
+## Estado real do projeto
 
----
+- O analisador léxico da AP1 está implementado em C++17.
+- A suíte atual possui 13 entradas e verifica somente aceitação/rejeição léxica da linguagem antiga.
+- O analisador sintático **ainda não está implementado**.
+- O lexer ainda precisa ser adaptado à gramática repaginada antes da integração do parser.
+- Este planejamento adota a gramática repaginada enviada pela dupla como referência da sintaxe. O enunciado da avaliação contém exemplos da versão antiga; as diferenças estão documentadas abaixo.
 
-## 1. O que precisa ser feito (resumo do enunciado)
+## Documentação da nova etapa
 
-- Ler um arquivo-fonte na linguagem GYH e devolver a sequência de tokens no formato `<Tipo, "lexema">`.
-- Quando encontrar algo inválido, parar e imprimir `Erro Léxico na linha N: Desconhecido "X"`.
-- Desenvolver em C++.
-- No arquivo onde estiver a `main`, colocar nome completo + RA dos dois integrantes.
-- Entregar todos os `.cpp`/`.h` do analisador.
+- [Divisão das tarefas e critérios de conclusão](docs/TAREFAS-SINTATICO.md)
+- [Gramática, decisões e contrato entre módulos](docs/SINTATICO.md)
+- [Documentação histórica da AP1](docs/LEXICO-AP1.md)
+- [Exemplo de fatorial na sintaxe repaginada](examples/sintatico/fatorial.gyh)
 
-### Categorias de token que o analisador precisa reconhecer
+## Compilar e executar o que já existe
 
-| Categoria | Lexemas | Token |
-|---|---|---|
-| Palavras-chave | `DEC PROG INT REAL LER IMPRIMIR SE SENAO ENTAO ENQTO INI FIM` | `PCDec, PCProg, PCInt, PCReal, PCLer, PCImprimir, PCSe, PCSenao, PCEntao, PCEnqto, PCIni, PCFim` |
-| Booleanos | `E`, `OU` | `OpBoolE`, `OpBoolOu` |
-| Aritméticos | `* / + -` | `OpAritMult, OpAritDiv, OpAritSoma, OpAritSub` |
-| Relacionais | `< <= > >= == !=` | `OpRelMenor, OpRelMenorIgual, OpRelMaior, OpRelMaiorIgual, OpRelIgual, OpRelDif` |
-| Delimitador | `:` | `Delim` |
-| Atribuição | `:=` | `Atrib` |
-| Parênteses | `( )` | `AbrePar, FechaPar` |
-| Variável | letra minúscula + letras/dígitos | `Var` |
-| Número inteiro | dígitos sem ponto | `NumInt` |
-| Número real | dígitos com ponto | `NumReal` |
-| Cadeia | texto entre `"aspas"` | `Cadeia` |
-| Comentário | `# até o fim da linha` | (ignorado) |
+Requisitos: `g++` com C++17 e GNU Make.
 
-Detalhe que pega muita gente: um identificador que começa com **maiúscula** só é válido se for
-exatamente uma palavra reservada; se não for, é erro léxico (é o exemplo `Parametro` do enunciado,
-que dá `Erro Léxico na linha 8: Desconhecido "Parametro"`).
-
-## 2. Divisão do trabalho por partes
-
-| Parte | O que envolve | Sugestão |
-|---|---|---|
-| **1. Infraestrutura do lexer** | Abrir arquivo, controlar posição atual, implementar `peek()`, `advance()` e `match()`, controlar número da linha, ignorar espaços, tabs, quebras de linha e comentários `#`, além de reconhecer EOF | Nunes |
-| **2. Palavras e classificação textual** | Reconhecer `DEC`, `PROG`, `INT`, `REAL`, `LER`, `IMPRIMIR`, `SE`, `SENAO`, `ENTAO`, `ENQTO`, `INI`, `FIM`, operadores booleanos `E`/`OU` e variáveis `Var` | Nunes |
-| **3. Operadores e símbolos** | Reconhecer operadores aritméticos `+`, `-`, `*`, `/`, relacionais `<`, `<=`, `>`, `>=`, `==`, `!=`, delimitador `:`, atribuição `:=` e parênteses `(`, `)` | Gabriel |
-| **4. Números e cadeias** | Reconhecer `NumInt`, `NumReal` e `Cadeia` entre aspas | Gabriel |
-| **5. Erro léxico** | Detectar caractere ou lexema inválido, identificar a linha do erro e emitir a mensagem no formato exigido pelo enunciado | os dois juntos |
-| **6. Testes e integração** | Juntar todos os módulos em um único programa, testar com o exemplo do fatorial válido e com erros léxicos, comparar a saída com a especificação e revisar o cabeçalho do código | os dois juntos |
-
-Ajustem entre vocês quem pega o quê — o importante é que cada parte vire uma branch e um PR
-separado, pra dar pra revisar o código um do outro antes de juntar.
-
-## 3. Como organizar no Git
-
-### Branches
-
-- **`main`** — versão estável, é o que vai ser entregue. Só recebe merge vindo de `develop`.
-- **`develop`** — branch de integração, onde as partes vão se juntando.
-- **`feature/<nome-da-parte>`** — uma branch por parte da tabela acima. Nasce de `develop`, é fundida de volta em `develop` via PR.
-
-Fluxo pra cada parte:
 ```bash
-git checkout develop
-git pull
-git checkout -b feature/nome-da-parte
-# ...codam...
-git push -u origin feature/nome-da-parte
-# abrir PR feature/nome-da-parte -> develop, o outro revisa e aprova
+make
+./lexer tests/teste_leitura.txt
+make run ARQUIVO=tests/testeParte2Valido.txt
+make test
+make clean
 ```
 
-Antes da entrega: PR `develop -> main`.
+`./lexer` apenas lista tokens; sua aprovação não significa que um programa é sintaticamente válido. O exemplo em `examples/sintatico/` é uma especificação para a próxima etapa e **ainda não é aceito pelo lexer atual**. Não existe alvo de testes sintáticos neste momento.
 
-### Convenção de commit
+## Mudanças da linguagem
 
-- `feat: reconhecimento das palavras-chave`
-- `fix: erro ao tratar operador de dois caracteres`
-- `test: casos de teste para numeros reais`
-- `docs: atualiza README`
+| Elemento | AP1 / implementação atual | Gramática repaginada |
+|---|---|---|
+| Seções | `:DEC`, `:PROG` | `[dec]`, `[prog]` |
+| Declaração | `x:INT`, `y:REAL` | `X[integer]`, `Y[float]` |
+| Variável | começa com minúscula | começa com maiúscula |
+| Atribuição | `:=` | `<<` |
+| Diferença | `!=` | `<>` |
+| Booleanos | `E`, `OU` | `and`, `or` |
+| Comandos | `LER`, `IMPRIMIR`, `SE`, `SENAO`, `ENTAO`, `ENQTO` | `read`, `print`, `if`, `else`, `then`, `while` |
+| Bloco | `INI ... FIM` | `start ... end` |
+| Repetição | exemplos antigos sem `ENTAO` | `while ExpressaoRelacional then Comando` |
 
-## 4. Por onde começar (passo a passo)
+Não misturar as versões nos testes. Os `;` usados para terminar produções no PDF não são tokens da linguagem.
 
-1. Criar o repositório no GitHub (vazio, sem README/gitignore automáticos) e os dois clonarem.
-2. Criar as branches `main` e `develop`.
-3. Alguém pega a **Parte 1 (Infraestrutura)** numa branch `feature/infraestrutura` — sem isso as outras partes não têm o que consumir (função que lê caractere por caractere e controla linha).
-4. Com a Parte 1 mergeada em `develop`, dividir Partes 2, 3 e 4 entre vocês dois em paralelo, cada um na sua branch.
-5. Juntar tudo num `switch`/dispatcher central que decide, pro caractere atual, qual das partes chamar (é a função principal do analisador — só faz sentido escrever depois que 2, 3 e 4 existem).
-6. Fazer a Parte 5 (erro léxico) por cima do que já existe.
-7. Escrever pelo menos dois arquivos de teste: um válido (pode usar o exemplo do fatorial do enunciado) e um com erro proposital.
-8. Revisar cabeçalho (nomes + RA), rodar os testes, PR final `develop -> main`.
-9. Registrar a dupla na planilha oficial de homologação do AP1.
+## Fluxo de trabalho da dupla
 
-## 5. Checklist antes de entregar
+Criar as branches a partir da `main` atual; a branch `develop` não foi encontrada no remoto durante esta revisão.
 
-- [ ] Todos os `.cpp`/`.h` estão no repositório
-- [ ] Cabeçalho da `main` com nome completo e RA dos dois
-- [ ] Compila sem warnings
-- [ ] Testado com entrada válida e com entrada de erro
-- [ ] Dupla registrada na planilha oficial
+1. Integrar primeiro o contrato do parser e a adaptação léxica (tarefas S01/S02).
+2. Elder e Gabriel implementam seus módulos em branches separadas conforme a tabela de tarefas.
+3. Cada PR deve explicar o que mudou e incluir os resultados dos testes correspondentes. O colega revisa.
+4. Antes da entrega, integrar na `main`, compilar e executar todos os testes sintáticos.
+
+```bash
+git switch main
+git pull --ff-only
+git switch -c feature/s01-lexer-repaginado
+# implementar, testar e registrar as alterações
+git add include/ src/ tests/ Makefile
+git commit -m "feat: adapta lexer para gramatica repaginada"
+git push -u origin feature/s01-lexer-repaginado
+```
+
+## Requisitos da entrega
+
+- Parser escrito manualmente: o enunciado proíbe geradores como ANTLR e yacc.
+- Proposta da dupla: descendente recursivo; ver as ressalvas de previsão de parênteses em `docs/SINTATICO.md`.
+- Primeira linha do arquivo com `main`: comentário com os nomes da dupla. O cabeçalho atual começa com `/*`; ajustar para conter os nomes já na primeira linha.
+- Mensagem de erro deve explicar o esperado e o encontrado e indicar a linha.
+- Revisar os arquivos finais e garantir que ambos entendam a implementação para a apresentação.

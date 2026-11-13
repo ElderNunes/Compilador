@@ -1,0 +1,13 @@
+[dec]
+Parametro[integer]
+Fatorial[integer]
+[prog]
+# Calcula o fatorial de um numero inteiro
+read Parametro
+Fatorial << Parametro
+if Parametro == 0 then Fatorial << 1
+while Parametro > 1 then start
+    Fatorial << Fatorial * (Parametro - 1)
+    Parametro << Parametro - 1
+end
+print Fatorial
