@@ -2,7 +2,7 @@
 
 ## Referências e decisões
 
-Referências lidas: `Gramática GYH-Repaginada (1)(1).pdf` e `Especificação 2a Avaliação (Trab 2) (1)(1).pdf`, enviados pela dupla. A primeira define a sintaxe adotada; a segunda define prazo, autoria, implementação manual e apresentação de erros. A especificação contém exemplos da linguagem antiga e não deve ser copiada literalmente para os testes novos.
+Referências lidas: `Gramática GYH-Repaginada.pdf` e `Especificação 2a Avaliação (Trab 2).pdf`, enviados pela dupla. A primeira define a sintaxe adotada; a segunda define prazo, autoria, implementação manual e apresentação de erros. A especificação contém exemplos da linguagem antiga e não deve ser copiada literalmente para os testes novos.
 
 Decisões propostas para implementação, sem atribuí-las ao professor:
 
