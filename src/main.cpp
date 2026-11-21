@@ -1,16 +1,12 @@
-/*
- * Integrante 1: Gabriel Oliveira de Jesus
- * RA: 2614090
- *
- * Integrante 2: Elder Nunes Gonçalves
- * RA: 2625288
- */
+// Gabriel Oliveira de Jesus (2614090) e Elder Nunes Gonçalves (2625288)
 
 #include <cstdio>
+#include <cstring>
+
 #include "lexer.h"
+#include "parser.h"
 #include "token.h"
 
-// Exibe o token no formato pedido pelo trabalho.
 static void imprimirToken(const Token *t) {
     if (t->tipo == TOKEN_EOF) {
         printf("<EOF>\n");
@@ -21,13 +17,22 @@ static void imprimirToken(const Token *t) {
 }
 
 int main(int argc, char *argv[]) {
-    // O primeiro argumento deve ser o arquivo-fonte da linguagem GYH.
-    if (argc < 2) {
-        fprintf(stderr, "Uso: %s <arquivo>\n", argv[0]);
+    bool modoSintatico = false;
+
+    if (argc == 3) {
+        if (strcmp(argv[2], "--sintatico") != 0) {
+            fprintf(stderr, "Opção desconhecida: %s\n", argv[2]);
+            return 1;
+        }
+
+        modoSintatico = true;
+    } else if (argc != 2) {
+        fprintf(stderr, "Uso: %s <arquivo> [--sintatico]\n", argv[0]);
         return 1;
     }
 
     FILE *fonte = fopen(argv[1], "r");
+
     if (!fonte) {
         fprintf(stderr, "Erro ao abrir '%s'\n", argv[1]);
         return 1;
@@ -36,17 +41,32 @@ int main(int argc, char *argv[]) {
     Lexer lex;
     lexerInicializar(&lex, fonte);
 
-    // Solicita tokens até o fim do arquivo ou até o primeiro erro.
-    Token t;
-    do {
-        t = proximoToken(&lex);
-        if (t.tipo == TOKEN_ERRO) {
-            fclose(fonte);
-            return 1;
+    bool sucesso = true;
+
+    if (modoSintatico) {
+        Parser parser;
+        parserInicializar(&parser, &lex);
+
+        sucesso = parserPrograma(&parser);
+
+        if (sucesso) {
+            printf("Programa sintaticamente válido.\n");
         }
-        imprimirToken(&t);
-    } while (t.tipo != TOKEN_EOF);
+    } else {
+        Token t;
+
+        do {
+            t = proximoToken(&lex);
+
+            if (t.tipo == TOKEN_ERRO) {
+                sucesso = false;
+                break;
+            }
+
+            imprimirToken(&t);
+        } while (t.tipo != TOKEN_EOF);
+    }
 
     fclose(fonte);
-    return 0;
+    return sucesso ? 0 : 1;
 }
