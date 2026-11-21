@@ -19,7 +19,7 @@ enum TipoToken {
     OP_BOOL_E, OP_BOOL_OU,
 
     // Símbolos e categorias de valores.
-    DELIM, ATRIB, ABRE_PAR, FECHA_PAR,
+    DELIM, INI_DELIM, FIM_DELIM, ATRIB, ABRE_PAR, FECHA_PAR,
 
     VAR, NUM_INT, NUM_REAL, CADEIA,
 
