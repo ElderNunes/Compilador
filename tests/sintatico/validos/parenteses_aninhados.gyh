@@ -1,0 +1,5 @@
+[dec]
+A[integer]
+[prog]
+A << ((1 + 2) * (3 - (4 / 2)))
+if ((A < 1) and ((A > 0) or (A == 2))) then print A

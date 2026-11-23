@@ -1,0 +1,7 @@
+[dec]
+A[integer]
+B[integer]
+[prog]
+while A > 0 then while B > 0 then start
+  B << B - 1
+end

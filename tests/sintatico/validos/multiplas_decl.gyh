@@ -1,0 +1,6 @@
+[dec]
+A[integer]
+B[float]
+C[integer]
+[prog]
+print "oi"

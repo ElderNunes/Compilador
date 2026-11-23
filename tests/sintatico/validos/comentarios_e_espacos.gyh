@@ -1,0 +1,8 @@
+# inicio
+[dec]   # decl
+  A [ integer ]
+
+[prog]
+
+# meio
+  print   "a b #nao comentario"

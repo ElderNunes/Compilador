@@ -1,0 +1,4 @@
+[dec]
+A[integer]
+[prog]
+if A < 1 and A > 0 or A == 5 then print A

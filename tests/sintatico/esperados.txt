@@ -1,0 +1,39 @@
+arquivo_vazio.gyh|1|esperado IniDelim
+atrib_comparacao.gyh|4|esperado expressão aritmética
+atrib_sem_operador.gyh|4|esperado Atrib
+bloco_sem_end.gyh|4|esperado PCFim
+bloco_vazio.gyh|4|esperado comando
+booleano_sem_relacao.gyh|4|condição antes de 'and' ou 'or'
+cadeia_aberta.gyh|4|L:Desconhecido "abc"
+comando_antes_prog.gyh|3|esperado IniDelim
+comando_vazio.gyh|3|esperado comando
+comparacao_encadeada.gyh|4|esperado PCEntao
+cond_com_atribuicao.gyh|4|esperado expressão relacional
+decl_sem_colchete_fim.gyh|3|esperado FimDelim
+decl_sem_tipo.gyh|2|esperado 'integer' ou 'float'
+decl_tipo_errado.gyh|2|L:Desconhecido "int"
+decl_vazia.gyh|2|esperado Var
+dois_pontos_antigo.gyh|2|L:Desconhecido ":"
+else_sem_comando.gyh|4|esperado comando
+else_solto.gyh|4|esperado comando
+else_terceiro.gyh|4|esperado EOF
+erro_fim_de_linha.gyh|6|esperado número, variável ou '('
+erro_lexico.gyh|4|L:Desconhecido "_"
+erro_linha_distante.gyh|11|esperado comando
+if_cond_aritmetica.gyh|4|esperado expressão relacional
+if_dois_comandos.gyh|4|esperado EOF
+if_sem_then.gyh|4|esperado PCEntao
+operando_ausente.gyh|4|esperado número, variável ou '('
+palavra_antiga.gyh|4|esperado Atrib
+parenteses_aberto.gyh|4|esperado FechaPar
+print_expr.gyh|4|esperado EOF
+print_numero.gyh|4|esperado variável ou cadeia
+read_cadeia.gyh|4|esperado Var
+read_numero.gyh|4|esperado Var
+relacional_ausente.gyh|4|esperado número, variável ou '('
+relacional_em_conta.gyh|4|expressão aritmética antes de '+' ou '-'
+sem_dec.gyh|1|esperado PCDec
+sem_prog.gyh|3|esperado IniDelim
+token_apos_fim.gyh|5|esperado EOF
+unario.gyh|4|esperado número, variável ou '('
+while_sem_then.gyh|4|esperado PCEntao

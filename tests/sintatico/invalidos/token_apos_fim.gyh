@@ -1,0 +1,5 @@
+[dec]
+A[integer]
+[prog]
+read A
+end

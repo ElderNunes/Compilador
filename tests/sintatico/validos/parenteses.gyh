@@ -1,0 +1,11 @@
+[dec]
+A[integer]
+B[integer]
+C[integer]
+D[integer]
+[prog]
+if (A + 1) < B then print A
+if (A < B) then print A
+if ((A + 1) < B and (C > D)) then print A
+if ((A + 1)) < B then print A
+if A < (B + C) then print A
