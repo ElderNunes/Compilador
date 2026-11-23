@@ -54,20 +54,20 @@ struct PalavraReservada {
 };
 
 static const PalavraReservada TABELA_PALAVRAS[] = {
-    {"DEC",      PC_DEC},
-    {"PROG",     PC_PROG},
-    {"INT",      PC_INT},
-    {"REAL",     PC_REAL},
-    {"LER",      PC_LER},
-    {"IMPRIMIR", PC_IMPRIMIR},
-    {"SE",       PC_SE},
-    {"SENAO",    PC_SENAO},
-    {"ENTAO",    PC_ENTAO},
-    {"ENQTO",    PC_ENQTO},
-    {"INI",      PC_INI},
-    {"FIM",      PC_FIM},
-    {"E",        OP_BOOL_E},
-    {"OU",       OP_BOOL_OU},
+    {"dec",     PC_DEC},
+    {"prog",    PC_PROG},
+    {"integer", PC_INT},
+    {"float",   PC_REAL},
+    {"read",    PC_LER},
+    {"print",   PC_IMPRIMIR},
+    {"if",      PC_SE},
+    {"else",    PC_SENAO},
+    {"then",    PC_ENTAO},
+    {"while",   PC_ENQTO},
+    {"start",   PC_INI},
+    {"end",     PC_FIM},
+    {"and",     OP_BOOL_E},
+    {"or",      OP_BOOL_OU},
 };
 
 #define QTD_PALAVRAS_RESERVADAS (sizeof(TABELA_PALAVRAS) / sizeof(PalavraReservada))
@@ -99,8 +99,8 @@ static TipoToken buscarPalavraReservada(const char *lexema) {
     return TOKEN_ERRO;
 }
 
-// Lê uma palavra iniciada por maiúscula e valida se ela é reservada.
-static Token lerPalavraMaiuscula(Lexer *lex) {
+// Lê uma palavra iniciada por minúscula e valida se ela é reservada.
+static Token lerPalavraMinuscula(Lexer *lex) {
     char buffer[MAX_LEXEMA];
     int i = 0;
     int linhaInicio = lex->linha;
@@ -130,13 +130,12 @@ static Token lerSimbolo(Lexer *lex) {
         case ')':
             avancar(lex);
             return montarToken(FECHA_PAR, ")", linhaInicio);
-        case ':':
+        case '[':
             avancar(lex);
-            if (lex->caractereAtual == '=') {
-                avancar(lex);
-                return montarToken(ATRIB, ":=", linhaInicio);
-            }
-            return montarToken(DELIM, ":", linhaInicio);
+            return montarToken(INI_DELIM, "[", linhaInicio);
+        case ']':
+            avancar(lex);
+            return montarToken(FIM_DELIM, "]", linhaInicio);
         case '+':
             avancar(lex);
             return montarToken(OP_ARIT_SOMA, "+", linhaInicio);
@@ -155,6 +154,14 @@ static Token lerSimbolo(Lexer *lex) {
                 avancar(lex);
                 return montarToken(OP_REL_MENOR_IGUAL, "<=", linhaInicio);
             }
+            if (lex->caractereAtual == '<') {
+                avancar(lex);
+                return montarToken(ATRIB, "<<", linhaInicio);
+            }
+            if (lex->caractereAtual == '>') {
+                avancar(lex);
+                return montarToken(OP_REL_DIF, "<>", linhaInicio);
+            }
             return montarToken(OP_REL_MENOR, "<", linhaInicio);
         case '>':
             avancar(lex);
@@ -170,13 +177,6 @@ static Token lerSimbolo(Lexer *lex) {
                 return montarToken(OP_REL_IGUAL, "==", linhaInicio);
             }
             return tokenErro(lex, "=", linhaInicio);
-        case '!':
-            avancar(lex);
-            if (lex->caractereAtual == '=') {
-                avancar(lex);
-                return montarToken(OP_REL_DIF, "!=", linhaInicio);
-            }
-            return tokenErro(lex, "!", linhaInicio);
         default: {
             char lexemaInvalido[2] = {c, '\0'};
             avancar(lex);
@@ -185,7 +185,7 @@ static Token lerSimbolo(Lexer *lex) {
     }
 }
 
-// Lê uma variável iniciada por minúscula, seguida por letras ou números.
+// Lê uma variável iniciada por maiúscula, seguida por letras ou números.
 static Token lerVariavel(Lexer *lex) {
     char buffer[MAX_LEXEMA];
     int i = 0;
@@ -270,20 +270,20 @@ Token proximoToken(Lexer *lex) {
         return montarToken(TOKEN_EOF, "EOF", linhaAtual);
     }
  
-    if (isupper(static_cast<unsigned char>(lex->caractereAtual))) {
-        return lerPalavraMaiuscula(lex);
+    if (islower(static_cast<unsigned char>(lex->caractereAtual))) {
+        return lerPalavraMinuscula(lex);
     }
 
-    if (islower(static_cast<unsigned char>(lex->caractereAtual))) {
+    if (isupper(static_cast<unsigned char>(lex->caractereAtual))) {
         return lerVariavel(lex);
     }
  
     if (lex->caractereAtual == '(' || lex->caractereAtual == ')' ||
-        lex->caractereAtual == ':' || lex->caractereAtual == '+' ||
+        lex->caractereAtual == '[' || lex->caractereAtual == ']' ||
+        lex->caractereAtual == '+' ||
         lex->caractereAtual == '-' || lex->caractereAtual == '*' ||
         lex->caractereAtual == '/' || lex->caractereAtual == '<' ||
-        lex->caractereAtual == '>' || lex->caractereAtual == '=' ||
-        lex->caractereAtual == '!') {
+        lex->caractereAtual == '>' || lex->caractereAtual == '=') {
         return lerSimbolo(lex);
     }
  

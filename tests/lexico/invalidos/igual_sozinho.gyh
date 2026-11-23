@@ -1,0 +1,2 @@
+[prog]
+if A = 1 then print A

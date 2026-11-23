@@ -1,0 +1,6 @@
+[dec]
+A[integer]
+B[float]
+[prog]
+A << 1 + 2.5 * (B - 3) / 4
+if A <> B and A <= B or A >= 1 then print "ok"
