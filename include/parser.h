@@ -39,8 +39,19 @@ bool parserDeclaracao(Parser *parser);
 // Reconhece uma ou mais declarações consecutivas.
 bool parserListaDeclaracoes(Parser *parser);
 
-// Reconhece a lista de comandos. Será implementada na parte de Gabriel.
+// Reconhece um ou mais comandos consecutivos (parser_comandos.cpp).
 bool parserListaComandos(Parser *parser);
+
+// Reconhece um único comando, escolhido pelo token atual.
+bool parserComando(Parser *parser);
+
+// Comandos individuais.
+bool parserAtribuicao(Parser *parser);
+bool parserEntrada(Parser *parser);
+bool parserSaida(Parser *parser);
+bool parserCondicao(Parser *parser);
+bool parserRepeticao(Parser *parser);
+bool parserSubAlgoritmo(Parser *parser);
 
 // Reconhece um programa completo.
 bool parserPrograma(Parser *parser);

@@ -6,7 +6,7 @@ CXXFLAGS := -std=c++17 -Wall -Wextra -Wpedantic
 # Arquivos-fonte, objetos e dependências geradas automaticamente.
 TARGET := lexer
 BUILD_DIR := build
-SOURCES := src/main.cpp src/lexer.cpp src/token.cpp
+SOURCES := src/main.cpp src/lexer.cpp src/token.cpp src/parser.cpp src/parser_comandos.cpp
 OBJECTS := $(patsubst src/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 DEPENDENCIES := $(OBJECTS:.o=.d)
 
