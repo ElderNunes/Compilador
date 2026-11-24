@@ -1,0 +1,10 @@
+[dec]
+A[integer]
+[prog]
+start
+  start
+    read A
+  end
+  print A
+end
+print A

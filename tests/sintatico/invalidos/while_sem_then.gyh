@@ -1,0 +1,4 @@
+[dec]
+A[integer]
+[prog]
+while A < 1 print A

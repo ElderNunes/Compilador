@@ -1,0 +1,2 @@
+[prog]
+if A != B then print A

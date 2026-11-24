@@ -1,0 +1,9 @@
+[dec]
+A[integer]
+[prog]
+if A < 1 then start
+  read A
+  print A
+end else start
+  print "fim"
+end

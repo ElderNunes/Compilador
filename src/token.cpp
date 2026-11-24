@@ -31,7 +31,6 @@ const char *nomeTipoToken(TipoToken tipo) {
         case OP_BOOL_E:            return "OpBoolE";
         case OP_BOOL_OU:           return "OpBoolOu";
 
-        case DELIM:                return "Delim";
         case ATRIB:                return "Atrib";
         case ABRE_PAR:             return "AbrePar";
         case FECHA_PAR:            return "FechaPar";

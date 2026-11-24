@@ -1,0 +1,7 @@
+atrib_antiga.gyh|4|Desconhecido ":"
+cadeia_aberta.gyh|2|Desconhecido "oi"
+caractere_invalido.gyh|2|Desconhecido "_"
+dif_antiga.gyh|2|Desconhecido "!"
+igual_sozinho.gyh|2|Desconhecido "="
+minuscula_nao_reservada.gyh|2|Desconhecido "abc"
+sintaxe_antiga_dec.gyh|1|Desconhecido ":"
